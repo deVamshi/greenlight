@@ -1,0 +1,13 @@
+{
+  "version": "1",
+  "name": "greenlight",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ],
+  "presets": {
+    "requestType": "http",
+    "requestUrl": "{{dev-url}}"
+  }
+}
