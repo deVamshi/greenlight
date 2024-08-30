@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
+
+	"github.com/deVamshi/greenlight/internal/data"
 )
 
 func (app *application) createMovie(w http.ResponseWriter, r *http.Request) {
@@ -17,5 +20,19 @@ func (app *application) movieById(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "show the details of movie %d\n", id)
+	movie := data.Movie{
+		ID:        id,
+		CreatedAt: time.Now(),
+		Title:     "Athadu",
+		Runtime:   132,
+		Genres:    []string{"Action", "Romance", "Family"},
+		Version:   1,
+	}
+
+	err = app.writeJSON(w, http.StatusOK, movie, nil)
+	if err != nil {
+		app.logger.Println(err)
+		http.Error(w, "Server Errror", http.StatusInternalServerError)
+	}
+
 }
