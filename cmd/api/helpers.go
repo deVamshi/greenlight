@@ -89,7 +89,6 @@ func (app *application) readJSON(w http.ResponseWriter, r *http.Request, dst int
 		default:
 			return err
 		}
-
 	}
 
 	// Call Decode() again, using a pointer to an empty anonymous struct as the
