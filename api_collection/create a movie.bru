@@ -1,0 +1,23 @@
+meta {
+  name: create a movie
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{dev-url}}/movies
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "athadu",
+    "year": 2006,
+    "runtime": 105,
+    "genres": [
+      "action",
+      "family"
+    ]
+  }
+}
