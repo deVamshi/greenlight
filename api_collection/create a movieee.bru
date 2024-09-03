@@ -1,0 +1,23 @@
+meta {
+  name: create a movieee
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{dev-url}}/movies
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "",
+    "year": 1,
+    "runtime": "3 mins",
+    "genres": [
+      "sci-fi",
+      "sci-fi"
+    ]
+  }
+}
