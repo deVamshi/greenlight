@@ -5,7 +5,12 @@ meta {
 }
 
 get {
-  url: {{dev-url}}/v1/movies
+  url: {{dev-url}}/v1/movies?title=black+panther&genres=action,adventure
   body: none
   auth: none
+}
+
+params:query {
+  title: black+panther
+  genres: action,adventure
 }
