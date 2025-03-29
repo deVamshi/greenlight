@@ -1,6 +1,7 @@
 package data
 
 import (
+	"math"
 	"strings"
 
 	"github.com/deVamshi/greenlight/internal/validator"
@@ -46,4 +47,27 @@ func ValidateFilters(v *validator.Validator, f Filters) {
 	v.Check(f.PageSize > 0, "page_size", "must be greater than zero")
 	v.Check(f.PageSize <= 100, "page_size", "must be a maximum of 100")
 	v.Check(validator.In(f.Sort, f.SortSafelist...), "sort", "invalid sort value")
+}
+
+type Metadata struct {
+	PageSize     int `json:"page_size,omitempty"`
+	CurrentPage  int `json:"current_page,omitempty"`
+	FirstPage    int `json:"first_page,omitempty"`
+	LastPage     int `json:"last_page,omitempty"`
+	TotalRecords int `json:"total_records,omitempty"`
+}
+
+func calculateMetadata(totalRecords, pageSize, currentPage int) Metadata {
+
+	if totalRecords == 0 {
+		return Metadata{}
+	}
+
+	return Metadata{
+		PageSize:     pageSize,
+		CurrentPage:  currentPage,
+		FirstPage:    1,
+		LastPage:     int(math.Ceil(float64(totalRecords) / float64(pageSize))),
+		TotalRecords: totalRecords,
+	}
 }
